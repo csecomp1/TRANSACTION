@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: bisque;
+        }
+        form{
+            border:2px solid ;
+            border-radius:30px;
+            width:400px;
+            margin:auto;
+            margin-top:200px;
+            padding:20px;
+            background-color: black;
+            color:white;
+            font-size:20px;
+        }
+        option{
+            font-size:20px;
+            border:2px solid black;
+        }
+        select{
+            width:150px;
+            height:30px;
+            border:2px solid black;
+        }
+
+        
+     #sub{
+        text-align: center;
+        margin: auto;
+        background-color: rgb(134, 200, 178);
+        padding:10px;
+        border-radius:9px;
+
+     }
+     input{
+        height:30px;
+     }
+     .top{
+        margin-bottom:30px;
+     }
+     .butdiv{
+        display:grid;
+     }
+    </style>
+</head>
+<body>
+<form action="/checktransfer" method="post">
+    <div class="top">
+    <label for="recid" >Choose customer</label>
+    <select id="recid" name="recid">
+    <% data.forEach(function(dat){
+      %>      
+      <option value="<%= dat.accid%>" ><%=dat.cus_name %></option>  
+    <% })%>
+   </select>
+</div>
+<br>
+<div class="top">
+   <label for="amt" >Enter Amount</label>
+   <input type="number" id="amt" name="amt"><br>
+</div>
+<div class="butdiv">
+   <button id="sub" name="from" value="<%= from%>" >TRANSFER</button>
+  
+</div>
+</form>
+</body>
+<script>
+    var but=document.getElementById('sub');
+    var recid=document.querySelector('#recid');
+   
+    but.addEventListener('click',()=>{
+        const formdata=new FormData();
+        const data=object.formEntries(formdata);
+        data.recid=recid.value;
+       
+        fetch('https://localhost:1000/checktransfer',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(data)
+        })
+    })
+</script>
+</html>

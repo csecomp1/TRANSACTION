@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,tr{
+            border-collapse: collapse;
+            border:2px solid white;
+            background-color: antiquewhite;
+            
+            margin:auto;
+            margin-top:250px;
+            width:600px;
+            
+        }
+        body{
+            background-color: black;
+        }
+        tr{
+            text-align: center;
+            color:brown;
+            font-family:'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+        th{
+            color:black;
+        }
+        td,th{
+        border:2px solid black;
+        padding:5px;
+        }
+    </style>
+</head>
+<body>
+   <table>
+    <tr><th>TRANSFERED FROM</th>      
+        <th>TRANSFERED TO</th>       
+        <th>AMOUNT</th>
+        <!--<th>DATE</th>-->
+    </tr>
+    
+    <%tdata.forEach(function(dat){%>
+     <tr>
+        <td><%=dat.from_id%></td>   
+        <td><%=dat.to_id%></td>      
+        <td><%=dat.amt%></td>
+        <!--<td><%=dat.time_%></td>-->
+        
+     </tr>
+    <%})%>
+   </table>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .container{
+            width:600px;
+            border:10px solid white;
+            margin-left:450px;
+            padding:4px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            background-color: rgb(28, 58, 105);
+        }
+        .img-div{
+            
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img{
+           justify-self: center;
+           align-self: center;
+        }
+        
+        .cont{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding:20px;
+            color:white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+       .content2{
+          color:sandybrown;
+          
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% if(bdata[0].gender=='female'){%>
+        <div class="img-div">
+            <img src="https://m.media-amazon.com/images/I/41Brp3Gs6sL.jpg" width="200" height="200">
+        </div>
+        <%} else{%>
+         
+        <div class="img-div">
+            <img src="https://m.media-amazon.com/images/I/41jLBhDISxL.jpg" width="200" height="200">
+        </div>
+       <%}%>
+        <div class="cont">
+        <div class="content">
+            <p>ACCOUNT NUMBER</p>
+            <p>NAME</p>
+            <p>MAIL ID</p>
+            <p>GENDER</p>
+            <p>DOB</p>
+            <p>PHONE NUMBER</p>
+            <p>BALANCE</p>
+        </div>
+        <div class="content2">
+            <p><%= bdata[0].accid%></p>
+            <p><%= bdata[0].cus_name%></p>
+            <p><%= bdata[0].mailid%></p>
+            <p><%= bdata[0].gender%></p>
+            <p><%= bdata[0].dob%></p>
+            <p><%= bdata[0].phno%></p>
+            <p><%= bdata[0].bal%></p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

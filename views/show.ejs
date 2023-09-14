@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            background-color: black;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+        }
+        table,tr{
+            border-collapse: collapse;
+            border:2px solid black;
+            margin:auto;
+            background-color: antiquewhite;
+            margin-top:100px;
+            border-radius: 10px;
+        }
+        tr{
+            text-align: center;
+            
+        }
+        td,th{
+        border:2px solid black;
+        padding:5px;
+        }
+        button{
+            background-color: rgb(230, 135, 135);
+            padding:10px;
+            border:2px solid brown;
+            border-radius:15px;
+            font-weight: bold;
+        }
+        
+        button:hover{
+            background-color: rgb(192, 127, 127);
+        }
+        #showtra{
+            margin-top:70px;
+           
+            display:grid;
+            align-items: center;
+            justify-content: center;
+        }
+        #showtran{
+            border:2px solid green;
+            background-color: rgb(166, 207, 106);
+        }
+    </style>
+</head>
+<body>
+   
+    <table>
+       <tr>
+        <th>NAME</th>                  
+        <th>Mail ID</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>Address</th>
+        <th>Ph No</th>
+        <th>Account ID</th>
+        <th>VIEW DETAILS</th>
+        <th>TRANSFER AMOUNT</th>
+       </tr>
+       <% if(sampleData.length>0){
+                sampleData.forEach(function(data){
+        %> 
+        <tr>
+        <td><%= data.cus_name %></td>
+        <td><%= data.mailid %></td>
+        <td><%= data.gender%></td>
+        <td><%= data.dob%></td>
+        <td><%= data.address%></td>
+        <td><%= data.phno%></td>
+        <td><%= data.accid%></td>
+
+        <td >
+            <form action="/viewdetails" method="post" id="myform">
+                <button name="ACC_ID"  id="sub" type="submit" value="<%= data.accid%>">Click Here</button>
+                
+            </form>
+           
+        </td>
+        <td> <form action="/transfer" method="post" id="trans">
+            <button name="TRANSFER" value="<%= data.accid%>" id="tran">Transfer</button>
+        </form></td>
+    </tr> 
+        <%
+                })
+         }%>
+    </table>
+    <form action="/showtransaction" method="post" id="showtra">
+        <button id="showtran">SHOW ALL TRANSACTION</button>
+    </form>
+    
+    <script>
+       var form=document.querySelector('#myform');
+       var sub=document.getElementById('sub');
+       var trans=document.getElementById('trans');
+       var tran=document.getElementById('tran');
+        sub.addEventListener('click',eve=>{
+        const formdata=new FormData();
+        const data=object.formEntries(formdata);
+        fetch('https://localhost:1000/viewdetails',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(data)
+        })
+       })
+       tran.addEventListener('click',eve=>{
+        const formdata=new FormData();
+        const data=object.formEntries(formdata);
+        fetch('https://localhost:1000/transfer',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(data)
+        })
+       })
+    </script>
+</body>
+
+</html>
